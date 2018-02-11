@@ -1,2 +1,2 @@
 # Invoice
-A simple webpage to update & create invoice
+A simple HTML webpage to update & create invoice
