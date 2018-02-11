@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create invoice</title>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
+
+<style>
+
+
+
+/* ~~~~~~~~~~~	All below CSS is for the form ~~~~~~~~~~~	*/
+.form{
+	background-color:white;
+	border-top: 2px solid black;
+	padding: 30px;
+	margin:20px 100px;
+	margin-bottom:60px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#5c5c3d;
+}
+#sub{
+	background-color: #4d94ff;
+	padding: 5px 220px;
+	padding-right: 320px;
+	color: white;
+	cursor:pointer;
+}
+#note{
+	width: 450px;
+}
+select{
+	margin-left:20px;
+	padding: 5px 20px;
+	width:140px;
+}
+input{
+	margin-left:20px;
+	padding: 5px 10px;
+	width:110px;
+}
+span{
+	border: 1px groove #cccccc;
+	padding: 5px 10px;
+	font-size: 14px;
+	font-weight:bold;
+	margin-left:-35px;
+}
+
+#myform{
+	margin-left:80px;
+}
+#add{
+	height:20px;width:20px;
+	margin: 0px;
+}
+
+/*	~~~~~~~~~~~ All below CSS is for the menu icons ~~~~~~~~~~~	*/
+#icons{
+margin-left: 180px;
+margin-top: 30px;
+}
+img{
+	cursor:pointer;
+	margin-left: 100px;
+	width: 48px;
+}
+#icos{
+	margin-left: 200px;
+}
+#icos p{
+	margin-left: 60px;
+	font-family: Arial;
+	display: inline;
+	font-size: 20px;
+	cursor:pointer;
+}
+	
+/*	~~~~~~~~~~~ All below CSS is for "Send to client" radio button ~~~~~~~~~~~	*/
+.tabs input[type=radio] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+.tabs {
+    float: none;
+    list-style: none;
+    position: absolute;
+    top: 310px;
+    left: 290px;
+}
+.tabs li{
+    float: left;
+}
+.tabs label {
+	display: block;
+    padding: 5px 10px;
+    border: 1px ridge #737373;
+    color: black;
+    font-size: 14px;
+    background: #e6e6e6;
+	cursor: pointer;
+}
+.tabs label:hover {background: #bfbfbf;}
+       
+[id^=tab]:checked + label {
+    background: #bfbfbf;
+    color: black;
+    font-weight: bold;
+}
+
+/*	~~~~~~~~~~~ All below CSS is for second half that includes the Summary ~~~~~~~~~~~	*/
+#set1{
+	border: 1px ridge #737373;
+	margin-left: -50px;
+	padding: 10px;
+    font-weight: bold;
+}
+
+
+#set2{
+	border: 1px ridge #737373;
+	padding: 10px;
+	margin-left:550px;
+}
+.no{
+	width: 250px;
+}
+.p{
+	position:relative;
+	left:350px;
+	top: -30px;
+}
+</style>
+
+<body background="img.png">
+	
+	<!-- Following are the icons -->
+	<div id="icons">
+		<img src="dashboard.png"></img>
+		<img src="itemlist.png"></img>
+		<img src="invoices.png"></img>
+		<img src="clients.png"> </img>
+		<img src="settings.png"> </img>
+		<img src="logout.png"></img>
+	</div>
+	<!-- Following are the icons' subtitles -->
+	<div id="icos">
+	<p> Dashboard</p>
+	<p> Item List</p>
+	<p> &nbsp;&nbsp;Invoices</p>
+	<p> &nbsp;&nbsp;&nbsp;&nbsp;Clients</p>
+	<p> &nbsp;&nbsp;&nbsp;&nbsp;Settings</p>
+	<p> &nbsp;&nbsp;Log out</p>
+	</div>
+	
+	<!-- Here our form starts -->
+	<div class="form">
+		<h2>Create invoice</h2>
+		<form name="myForm" id="myform">
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Status:
+		<select>
+			<option value="unpaid">Unpaid</option>
+			<option value="saab">Paid</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- This is just to give space -->
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- This is just to give space -->
+		
+		Due date:* &nbsp;&nbsp;<input type="date" name="due"> 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Client:* &nbsp;&nbsp;<select>
+			<option value="1">Select client</option>
+			<option value="2">...</option>
+			<option value="3">...</option>
+		</select>
+		<button ><img id="add" src="add.png"></img></button>
+		
+		<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Currency:<select>
+			<option value="euro">Euro</option>
+			<option value="rupee">Rupees</option>
+			<option value="rupee">Dollars</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Tax Rate: &nbsp;&nbsp;&nbsp;<input type="number" id="tax" placeholder="Tax rate" maxlength="2"><span>%</span> 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Discount: &nbsp;&nbsp;&nbsp;<input type="number" id="discount" placeholder="Discount" maxlength="2"><span>%</span> <br><br>
+		Send to client:
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Note: &nbsp;&nbsp;&nbsp;<input type="textarea" placeholder="invoice note" name="tax" id="note"> <br>
+		
+		
+	<ul class="tabs">
+        <li>
+          <input type="radio" checked name="tabs" id="tab1">
+          <label for="tab1">No</label>
+        </li>
+        <li>
+          <input type="radio" name="tabs" id="tab2">
+          <label for="tab2">Yes</label>
+        </li>
+	</ul>
+	<br><br><br>
+		
+	<!-- ~~~~~~~~~~~	Here our second half second half that includes the Summary~~~~~~~~~~~	-->
+	<fieldset id="set1">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Items
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Unit price
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Quantity
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Total
+	<br>
+	<select class="no">
+			<option value="1">Select item</option>
+			<option value="2">...</option>
+			<option value="3">...</option>
+		</select>&nbsp;&nbsp;&nbsp;
+	<input type="textarea" placeholder="Unit price" name="tax"  class="no" id="price"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="textarea" placeholder="Quantity" name="tax"  class="no" id="qty"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b id="total">0.00</b><br><br>
+			
+	</fieldset><br>
+	<button><i class="fa fa-plus-circle" style="font-size:16px">  </i> Add more rows</button>
+	<button><i class="fa fa-plus-circle" style="font-size:16px">  </i> Add blank row</button><br>
+	
+	<i class="fa fa-exclamation-triangle" style="font-size:14px"> Empty rows will be ignored	</i>
+	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b>Summary</b>
+	<br><br>
+	<fieldset id="set2">
+		Sub-total <p class="p" id="subtotal">0.00</p><hr>
+		Tax <p class="p" id="taxtotal">0.00</p><hr>
+		Discount <p class="p" id="distotal">0.00</p><hr>
+		Paid <p class="p" id="paidtotal">0.00</p><hr>
+		Due Amount <p class="p" id="duetotal">0.00</p><br>
+	
+	</fieldset>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<input type="button" value=" &#10004; Create invoice" align="center" onclick="validate()" id="sub">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="reset" value="Reset" align="center" id="reset">
+	</form>
+
+</div>
+
+
+
+	<script>
+	function validate()
+	{
+		var tax = document.getElementById("tax").value;
+		var dis = document.getElementById("discount").value;
+		var pri = document.getElementById("price").value;
+		var qty = document.getElementById("qty").value;
+		if(pri == "" || qty == "" ){
+			alert("Fill the required fields!");
+			return false;
+		}
+		var total = pri*qty;
+		document.getElementById("total").innerHTML = total;
+		document.getElementById("subtotal").innerHTML = total;
+		tax = tax*total/100;
+		total = total + tax;
+		document.getElementById("taxtotal").innerHTML = tax;
+		dis = dis*total/100;
+		total = total - dis;
+		document.getElementById("distotal").innerHTML = dis;
+		document.getElementById("duetotal").innerHTML = total;
+		alert("Invoice created!");
+		return true;
+	}
+	</script>
+  </body>
+</html>
+
